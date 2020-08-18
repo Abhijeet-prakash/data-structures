@@ -1,1 +1,229 @@
+import java.io.*;
+class Node
+{
+int data;
+Node next;
+}
 
+class LinkedList
+{
+Node head;
+public void insertAtHead(int data)
+{
+Node n=new Node();
+n.data=data;
+n.next=null;
+
+if(head==null)
+{
+head=n;
+}
+else
+{
+n.next=head;
+head=n;
+}
+}
+
+public void insertAtTail(int data)
+{
+Node n=new Node();
+n.data=data;
+n.next=null;
+
+if(head==null)
+{
+head=n;
+}
+else
+{
+Node temp;
+temp=head;
+while(temp.next!=null)
+{
+temp=temp.next;
+}
+temp.next=n;
+}
+
+}
+
+public void insertAtPos(int index,int data)
+{
+int len=size();
+if(index==0)
+{
+insertAtHead(data);
+}
+else if(index==len)
+{
+insertAtTail(data);
+}
+else
+{
+int count=0;
+Node temp,temp1;
+Node n=new Node();
+n.data=data;
+n.next=null;
+
+temp=head;
+for(;count<index-1;count++)
+{
+temp=temp.next;
+}
+temp1=temp.next;
+temp.next=n;
+n.next=temp1;
+}
+
+}
+
+
+public int size()
+{
+int i=1;
+Node temp;
+temp=head;
+if(head==null)
+{
+return 0;
+}
+else
+{
+while(temp.next!=null)
+{
+i++;
+temp=temp.next;
+}
+return i;
+}
+}
+
+public void display()
+{
+Node temp;
+temp=head;
+if(head==null)
+System.out.println("no elements");
+else 
+{
+while(temp.next!=null)
+{
+System.out.println(temp.data);
+temp=temp.next;
+}
+System.out.println(temp.data);
+}
+}
+
+public void removeHead()
+{
+if(head==null)
+{
+System.out.println("no elements");
+}
+else {
+head=head.next;
+}
+
+}
+
+public void removeTail()
+{
+if(head==null)
+{
+System.out.println("no elements");
+}
+else
+{
+Node temp=head;
+int length=size();
+for(int i=1;i<length-1;i++)
+{
+temp=temp.next;
+}
+temp.next=null;
+}
+}
+
+public void removePos(int index)
+{
+Node temp,temp1;
+if(index==0)
+{
+temp=head;
+head=temp.next;
+
+}
+else
+{
+temp=head;
+for(int i=0;i<index-1;i++)
+{
+temp=temp.next;
+}
+temp1=temp.next;
+temp.next=temp1.next;
+}
+}
+
+
+}
+
+
+class implementation
+{
+public static void main(String args[])
+{
+
+int value,index,length;
+System.out.println("implementation of linked list:-");
+LinkedList list=new LinkedList();
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+try
+{
+while(true)
+{
+System.out.println("1.insertAtHead 2.insertAtTail 3.insertAtPos(index,data) 4.size 5.exit 6.display 7.removeHead 8.removeTail 9.removePos(index)");
+int n=Integer.parseInt(br.readLine());
+switch(n)
+{
+case 1:System.out.println("enter value");
+       value=Integer.parseInt(br.readLine());       
+       list.insertAtHead(value);
+break;
+case 2:System.out.println("enter value");
+       value=Integer.parseInt(br.readLine());
+       list.insertAtTail(value);
+break;
+case 3:System.out.println("enter index and value");
+       index=Integer.parseInt(br.readLine());
+       value=Integer.parseInt(br.readLine());
+       list.insertAtPos(index,value);
+break;
+case 4:length=list.size();
+       System.out.println(length);
+break;
+case 5:return;
+case 6:list.display();
+break;
+case 7:list.removeHead();
+break;
+case 8:list.removeTail();
+break;
+case 9:System.out.println("enter index");
+       index=Integer.parseInt(br.readLine());
+       list.removePos(index);
+break;
+default: System.out.println("invalid option");       
+}
+}
+}
+catch(Exception e)
+{
+System.out.println("something went wrong");
+}
+}
+
+}
