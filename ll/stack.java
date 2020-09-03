@@ -16,9 +16,9 @@ switch(n)
 {
 case 1:System.out.println("enter value");
        value=Integer.parseInt(br.readLine());       
-        list.insertAtTail(value);       
+        list.insertAtHead(value);       
 break;
-case 2:list.removeTail();
+case 2:list.removeHead();
 break;
 case 3:System.out.println(list);
 break;
